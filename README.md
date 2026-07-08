@@ -78,15 +78,34 @@ There is no traditional train/test split — this is a **walk-forward backtest**
 - Cumulative returns are plotted against SPY's buy-and-hold cumulative returns over the full backtest period.
 - Output: **"Unsupervised Learning Trading Strategy Returns Over Time"** chart, visually comparing the strategy's growth to the S&P 500 benchmark.
 
-## 🔧 Tech Stack
+##  Model / Strategy Evaluation
+
+Beyond the cumulative return plot, the strategy is evaluated quantitatively against SPY buy-and-hold using:
+
+| Metric | What it tells you |
+|---|---|
+| **Total & Annualized Return** | Overall and yearly growth of the strategy |
+| **Annualized Volatility** | How much the returns fluctuate |
+| **Sharpe Ratio** | Risk-adjusted return (return per unit of total volatility) |
+| **Sortino Ratio** | Risk-adjusted return, penalizing only downside volatility |
+| **Max Drawdown** | Worst peak-to-trough decline — the worst-case pain an investor would feel |
+| **Alpha & Beta (vs. SPY)** | Via OLS regression — Beta shows market risk exposure; Alpha shows excess return *not* explained by the market, i.e., whether clustering + optimization genuinely added value |
+| **Monthly Win Rate** | % of months the strategy beat SPY |
+| **Rolling Sharpe Ratio** | Whether performance was consistent over time or driven by a short lucky stretch |
+| **Drawdown Chart** | Visualizes drawdown over time alongside returns |
+
+This turns the evaluation from "does the line look higher than SPY?" into a full risk-adjusted performance comparison.
+
+##  Tech Stack
 
 `pandas` · `numpy` · `matplotlib` · `statsmodels` · `pandas_datareader` · `yfinance` · `pandas_ta` · `scikit-learn` · `PyPortfolioOpt`
 
 ##  Limitations & Future Work
 
-- No explicit risk metrics computed yet (Sharpe ratio, max drawdown, volatility) beyond the cumulative return plot.
 - No systematic comparison across different numbers of clusters, lookback windows, or centroid choices.
 - Strategy is built around a single hypothesis (RSI-momentum cluster) rather than testing multiple cluster-selection rules.
+- Evaluation metrics (Sharpe, alpha/beta, etc.) are computed once over the full backtest period rather than across multiple market regimes (bull/bear/sideways) for robustness.
+- No transaction costs, slippage, or tax impact modeled in the backtest.
 
 ##  How to Run
 
@@ -95,4 +114,5 @@ There is no traditional train/test split — this is a **walk-forward backtest**
    pip install pandas numpy matplotlib statsmodels pandas_datareader yfinance pandas_ta scikit-learn PyPortfolioOpt
    ```
 2. Open `algorithmic-trading-strategy.ipynb` in Jupyter and run cells sequentially (top to bottom).
-3. Note: live data downloads (Wikipedia, Yahoo Finance, Ken French Data Library) require an internet connection and may be subject to rate limits/schema chan
+3. Note: live data downloads (Wikipedia, Yahoo Finance, Ken French Data Library) require an internet connection and may be subject to rate limits/schema changes.
+
