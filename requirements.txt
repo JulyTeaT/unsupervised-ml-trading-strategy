@@ -1,0 +1,8 @@
+numpy
+matplotlib
+statsmodels
+pandas_datareader
+yfinance
+pandas_ta
+PyPortfolioOpt
+requests
