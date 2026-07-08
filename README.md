@@ -95,5 +95,5 @@ There is no traditional train/test split — this is a **walk-forward backtest**
    ```bash
    pip install pandas numpy matplotlib statsmodels pandas_datareader yfinance pandas_ta scikit-learn PyPortfolioOpt
    ```
-2. Open `capstone.ipynb` in Jupyter and run cells sequentially (top to bottom).
+2. Open `algorithmic-trading-strategy.ipynb` in Jupyter and run cells sequentially (top to bottom).
 3. Note: live data downloads (Wikipedia, Yahoo Finance, Ken French Data Library) require an internet connection and may be subject to rate limits/schema chan
