@@ -87,7 +87,6 @@ There is no traditional train/test split — this is a **walk-forward backtest**
 - No explicit risk metrics computed yet (Sharpe ratio, max drawdown, volatility) beyond the cumulative return plot.
 - No systematic comparison across different numbers of clusters, lookback windows, or centroid choices.
 - Strategy is built around a single hypothesis (RSI-momentum cluster) rather than testing multiple cluster-selection rules.
-- Some notebook cells were left empty/incomplete during experimentation.
 
 ##  How to Run
 
